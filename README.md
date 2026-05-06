@@ -1,6 +1,7 @@
-  Intelligent Urban Health Risk Prediction System
-
-An AI-powered system that predicts community-level health risks using real-time weather and air quality data.
+AI-based system that predicts urban health risks using real-time environmental data and machine learning models.
+Intelligent Urban Health Risk Prediction System
+  
+ An AI-powered system that predicts community-level health risks using real-time weather and air quality data.
 
 ---
 
