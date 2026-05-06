@@ -106,6 +106,8 @@ Public health planning
  Deep learning models
  Mobile app integration
  More accurate predictions
+ 
+ Note: AI prediction is handled using a Flask-based ML model integrated with real-time environmental data.
 
 ---
 
