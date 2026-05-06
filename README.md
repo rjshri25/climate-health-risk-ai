@@ -64,8 +64,39 @@ Machine Learning models analyze this data to:
 
 > Project runs locally. Screenshots show working functionality.
 
+## 📸 Screenshots
+
+> Project runs locally. Screenshots show working functionality.
+
+### 📊 Dashboard
 ![Dashboard](screenshots/dashboard.png)
-![Prediction](screenshots/output.png)
+
+### 🌍 Risk Map Visualization
+![Risk Map](screenshots/riskmap.png)
+
+### 🌦️ Weather Data
+![Weather](screenshots/weather.png)
+
+### 🤖 Prediction Output
+![Prediction](screenshots/prediction.png)
+
+### 🚨 Alerts System
+![Alerts](screenshots/alerts.png)
+
+### 📈 Reports & Analytics
+![Report](screenshots/report.png)
+
+### 🧑‍💼 Admin Dashboard
+![Admin](screenshots/adminDashboard.png)
+
+### 📊 Results View
+![Results](screenshots/results.png)
+
+### 🗂️ Category Management
+![Category](screenshots/category.png)
+
+### 📜 Logs / Data Records
+![Logs](screenshots/log.png)
 
 ---
 
