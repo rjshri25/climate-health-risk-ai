@@ -81,6 +81,9 @@ Tech Stack:
 
 
 
-## 👩‍💻 Author
+Author:
 
 Rajashri Mali
+Samruddhi Salunkhe
+Sujata Lokare
+Mayuri Ghalame
