@@ -3,16 +3,16 @@ import joblib
 import pandas as pd
 
 
-BASE_PATH = r"C:\Disease Prediction Backend\models"
+BASE_PATH = path.join(path.dirname(__file__), "models")
 
-model_cat = joblib.load(BASE_PATH + r"\category_model.pkl")
-features_cat = joblib.load(BASE_PATH + r"\features.pkl")
+model_cat = joblib.load(path.join(BASE_PATH, "category_model.pkl"))
+features_cat = joblib.load(path.join(BASE_PATH, "features.pkl"))
 
-model_dis = joblib.load(BASE_PATH + r"\disease_model_final.pkl")
-features_dis = joblib.load(BASE_PATH + r"\features_disease.pkl")
+model_dis = joblib.load(path.join(BASE_PATH, "disease_model_final.pkl"))
+features_dis = joblib.load(path.join(BASE_PATH, "features_disease.pkl"))
 
-category_map = joblib.load(BASE_PATH + r"\category_map.pkl")
-category_disease_map = joblib.load(BASE_PATH + r"\category_disease_map.pkl")
+category_map = joblib.load(path.join(BASE_PATH, "category_map.pkl"))
+category_disease_map = joblib.load(path.join(BASE_PATH, "category_disease_map.pkl"))
 
 def get_season(m):
     if m in [12, 1, 2]:
