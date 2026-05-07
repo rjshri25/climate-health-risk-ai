@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 function ViewUsersHistory() {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);

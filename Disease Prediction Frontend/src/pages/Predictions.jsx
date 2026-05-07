@@ -10,16 +10,10 @@ function Predictions() {
   const [gps, setGps] = useState(null);
   const [useGPS, setUseGPS] = useState(false);
 
-  const [filters] = useState({
-    level: "All Levels",
-    disease: "All Diseases",
-  });
-
   const [allPredictions, setAllPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  
   useEffect(() => {
     fetchHistory();
   }, []);
@@ -40,7 +34,6 @@ function Predictions() {
     }
   };
 
-  
   const handleDelete = async (id) => {
     try {
       const res = await fetch(
@@ -62,7 +55,6 @@ function Predictions() {
     }
   };
 
- 
   const getLocation = () => {
     if (!navigator.geolocation) {
       alert("GPS not supported");
@@ -88,7 +80,6 @@ function Predictions() {
     );
   };
 
-  
   const handlePredict = async (lat = null, lon = null) => {
     if (!city && !lat) {
       setErrorMsg("Please enter valid city");
@@ -102,22 +93,26 @@ function Predictions() {
 
       const user_id = localStorage.getItem("user_id");
 
-         const res = await fetch(`${import.meta.env.VITE_API_BASE}/weather`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ city, user_id, lat, lon }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE}/weather`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ city, user_id, lat, lon }),
+        }
+      );
 
       const data = await res.json();
+
+      console.log("Prediction Response:", data);
 
       if (!res.ok) {
         setErrorMsg("Prediction failed");
         return;
       }
 
-      toast.success("Prediction successful");
+      toast.success("Prediction successful ✔️");
       await fetchHistory();
-
     } catch (error) {
       console.error(error);
       setErrorMsg("Server error");
@@ -126,13 +121,10 @@ function Predictions() {
     }
   };
 
-  
-  const filteredData = allPredictions.filter((item) => {
-    return (
-      (city === "" ||
-        (item.city || "").toLowerCase().includes(city.toLowerCase()))
-    );
-  });
+  const filteredData = allPredictions.filter((item) =>
+    city === "" ||
+    (item.city || "").toLowerCase().includes(city.toLowerCase())
+  );
 
   return (
     <div className="layout">
@@ -146,8 +138,7 @@ function Predictions() {
         </div>
 
         <div className="content">
-
-          
+          {/* INPUT */}
           <div style={{ marginBottom: "20px" }}>
             <input
               type="text"
@@ -157,7 +148,10 @@ function Predictions() {
               style={{ padding: "8px", width: "250px" }}
             />
 
-            <button onClick={() => handlePredict()} style={{ marginLeft: "10px", padding: "8px" }}>
+            <button
+              onClick={() => handlePredict()}
+              style={{ marginLeft: "10px", padding: "8px" }}
+            >
               {loading ? "Predicting..." : "Get Prediction"}
             </button>
 
@@ -175,55 +169,52 @@ function Predictions() {
             </button>
           </div>
 
-          
           {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
 
-          
+          {/* RESULTS */}
           <div className="charts">
             {filteredData.length > 0 ? (
               filteredData.map((item, index) => {
-                const isNormal =
-                  !item.title ||
-                  item.title.toLowerCase().includes("normal") ||
-                  item.level === "Safe";
+                const isSafe =
+                  item.category?.toLowerCase().includes("normal") ||
+                  item.risk_level === "Safe";
 
                 return (
                   <div
                     key={index}
                     className="chart-box"
                     style={{
-                      borderLeft: isNormal ? "6px solid green" : "6px solid orange",
+                      borderLeft: isSafe
+                        ? "6px solid green"
+                        : "6px solid orange",
                       padding: "10px",
                       marginBottom: "10px",
                     }}
                   >
-                    
                     <h3>
-                      {isNormal
-                        ? "🌿 Normal / No Disease Risk"
-                        : item.title}
+                      {isSafe
+                        ? "🌿 Normal / Safe Conditions"
+                        : item.disease || item.category}
                     </h3>
 
                     <p>📍 {item.city}</p>
 
-                    
                     <p>
-                      {isNormal
+                      {isSafe
                         ? "Safe environmental conditions"
-                        : item.description}
+                        : item.cause || "Risk detected"}
                     </p>
 
-                    
                     <p>
-                      Risk: {isNormal ? "Safe" : item.level}
+                      Risk: {item.risk_level || "Safe"}
                     </p>
 
-                    
-                    {!isNormal && item.confidence != null && (
-                      <p>{item.confidence}% probability</p>
+                    {!isSafe && item.disease_prob != null && (
+                      <p>
+                        {item.disease_prob}% probability
+                      </p>
                     )}
 
-                    
                     <button
                       onClick={() => handleDelete(item.id)}
                       style={{
@@ -247,7 +238,6 @@ function Predictions() {
         </div>
       </div>
 
-      
       <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
