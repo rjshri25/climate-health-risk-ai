@@ -68,9 +68,13 @@ Features
 
 ---
 
+## 🌐 Live Demo
+
+🚀 Deployed App: [https://climate-health-risk-ai.vercel.app ](https://climate-health-risk-ai-tgff.vercel.app/) 
+💡 Click above to see real-time health risk predictions
  Screenshots
 
-> Project runs locally. Screenshots show working functionality.
+>
 
 ### 📊 Dashboard
 
