@@ -1,3 +1,5 @@
+from os import path
+
 from flask import Flask, request, jsonify, render_template
 import requests
 from pipeline import full_pipeline
@@ -5,11 +7,15 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = \
-    'mysql+pymysql://root:root@localhost/disease_prediction'
+BASE_DIR = path.abspath(path.dirname(__file__))
+DB_PATH = path.join(BASE_DIR, "app.db")
 
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{DB_PATH}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -930,5 +936,10 @@ def risk_map_data():
             print(f"Error for {city}: {e}")
 
     return jsonify(results)
+
+with app.app_context():
+    db.create_all()
+
+
 if __name__ == "__main__":
     app.run(debug=True)

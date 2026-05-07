@@ -2,7 +2,9 @@ from os import path
 import joblib
 import pandas as pd
 
-BASE_PATH = path.join(path.dirname(__file__), "models")
+BASE_DIR = path.abspath(path.dirname(__file__))
+
+BASE_PATH = path.join(BASE_DIR, "models")
 
 model_cat = joblib.load(path.join(BASE_PATH, "category_model.pkl"))
 features_cat = joblib.load(path.join(BASE_PATH, "features.pkl"))
@@ -11,8 +13,7 @@ model_dis = joblib.load(path.join(BASE_PATH, "disease_model_final.pkl"))
 features_dis = joblib.load(path.join(BASE_PATH, "features_disease.pkl"))
 
 category_map = joblib.load(path.join(BASE_PATH, "category_map.pkl"))
-category_disease_map = joblib.load(path.join(BASE_PATH, "category_disease_map.pkl")) 
-
+category_disease_map = joblib.load(path.join(BASE_PATH, "category_disease_map.pkl"))
 
 def get_season(m):
     if m in [12, 1, 2]:
@@ -118,7 +119,6 @@ def predict_disease(input_data, category):
 
     prob = model_dis.predict_proba(X)[0]
     classes = model_dis.classes_
-    print("Classes:", classes)
     prob = prob + 1e-6
     prob = prob / prob.sum()
 
@@ -193,9 +193,7 @@ def predict_disease(input_data, category):
     total = sum(prob_dict.values())
     prob_dict = {k: v / total for k, v in prob_dict.items()}
 
-    print("\n--- RAW MODEL PROBABILITIES ---")  
-    for k, v in prob_dict.items():
-      print(f"{k}: {round(v*100, 2)}%")
+   
 
     prob_dict = apply_category_constraint(prob_dict, category)
 
