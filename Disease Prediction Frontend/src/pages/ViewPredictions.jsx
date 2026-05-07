@@ -9,7 +9,7 @@ function ViewPredictions() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/predictions-table")
+    axios.get(`${process.env.REACT_APP_API_BASE}/predictions-table`)
       .then((res) => {
         setPredictions(res.data);
         setFilteredData(res.data);

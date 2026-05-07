@@ -8,7 +8,7 @@ export default function Alerts({ selectedCity, setSelectedCity }) {
 
   
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/live-weather")
+     fetch(`${process.env.REACT_APP_API_BASE}/live-weather`)
       .then(res => res.json())
       .then(data => setAlertsData(data));
   }, []);

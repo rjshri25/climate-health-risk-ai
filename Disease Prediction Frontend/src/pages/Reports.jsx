@@ -12,7 +12,7 @@ function Reports({ selectedCity, setSelectedCity }) {
 
     const userId = localStorage.getItem("user_id");
 
-    fetch(`http://127.0.0.1:5000/user/download-report?user_id=${userId}`)
+      fetch(`${process.env.REACT_APP_API_BASE}/user/download-report?user_id=${userId}`)
       .then(res => res.json())
       .then(data => {
         setReportData(data);

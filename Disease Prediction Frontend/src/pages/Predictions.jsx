@@ -29,7 +29,7 @@ function Predictions() {
       const user_id = localStorage.getItem("user_id");
 
       const res = await fetch(
-        `http://localhost:5000/history?user_id=${user_id}`
+        `${process.env.REACT_APP_API_BASE}/history?user_id=${user_id}`
       );
 
       const data = await res.json();

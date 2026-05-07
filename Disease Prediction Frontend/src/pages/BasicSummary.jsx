@@ -8,7 +8,7 @@ function BasicSummary() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/basic-summary")
+      .get(`${process.env.REACT_APP_API_BASE}/basic-summary`)
       .then((res) => {
         setData(res.data);
         setLoading(false);

@@ -59,9 +59,9 @@ function AdminDashboard() {
 
   const fetchAQIData = async () => {
     try {
-      const res = await fetch(
-        "http://localhost:5000/environment/cities"
-      );
+     const res = await fetch(
+  `${process.env.REACT_APP_API_BASE}/environment/cities`
+);
 
       const data = await res.json();
 

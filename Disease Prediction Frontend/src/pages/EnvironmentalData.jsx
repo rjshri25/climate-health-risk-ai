@@ -29,10 +29,10 @@ function EnvironmentalData() {
     try {
       const user_id = localStorage.getItem("user_id");
 
-      let url = `http://localhost:5000/environment/user-city?user_id=${user_id}`;
+      let url = `${process.env.REACT_APP_API_BASE}/environment/user-city?user_id=${user_id}`;
 
       if (useGPS && gps) {
-        url = `http://localhost:5000/environment/user-city?lat=${gps.lat}&lon=${gps.lon}`;
+        url = `${process.env.REACT_APP_API_BASE} /environment/user-city?lat=${gps.lat}&lon=${gps.lon}`;
       }
 
       const res = await fetch(url);

@@ -8,7 +8,7 @@ function DownloadReport() {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/predictions-table"
+        `${process.env.REACT_APP_API_BASE}/predictions-table`
       );
 
       if (!res.ok) throw new Error("Failed to fetch report");
