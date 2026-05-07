@@ -12,7 +12,7 @@ function Reports({ selectedCity, setSelectedCity }) {
 
     const userId = localStorage.getItem("user_id");
 
-      fetch(`${process.env.REACT_APP_API_BASE}/user/download-report?user_id=${userId}`)
+      fetch(`${import.meta.env.VITE_API_BASE}/user/download-report?user_id=${userId}`)
       .then(res => res.json())
       .then(data => {
         setReportData(data);

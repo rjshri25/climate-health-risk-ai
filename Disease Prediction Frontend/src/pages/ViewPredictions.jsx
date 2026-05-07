@@ -9,7 +9,7 @@ function ViewPredictions() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_BASE}/predictions-table`)
+    axios.get(`${import.meta.env.VITE_API_BASE}/predictions-table`)
       .then((res) => {
         setPredictions(res.data);
         setFilteredData(res.data);

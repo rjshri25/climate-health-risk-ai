@@ -45,11 +45,11 @@ function Dashboard() {
       try {
 
         
-        const res1 = await fetch(`${process.env.REACT_APP_API_BASE}/live-weather`);
+         const res1 = await fetch(`${import.meta.env.VITE_API_BASE}/live-weather`);
         const data1 = await res1.json();
 
         
-        const res2 = await fetch(`${process.env.REACT_APP_API_BASE}/environment/live`);
+        const res2 = await fetch(`${import.meta.env.VITE_API_BASE}/environment/live`);
         const data2 = await res2.json();
 
         if (res1.ok && res2.ok) {

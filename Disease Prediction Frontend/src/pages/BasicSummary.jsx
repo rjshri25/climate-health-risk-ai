@@ -8,7 +8,7 @@ function BasicSummary() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_BASE}/basic-summary`)
+      .get(`${import.meta.env.VITE_API_BASE}/basic-summary`)
       .then((res) => {
         setData(res.data);
         setLoading(false);

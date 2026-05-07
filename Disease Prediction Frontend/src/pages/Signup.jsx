@@ -52,7 +52,7 @@ function Signup() {
 
     try {
 
-        const res = await fetch(`${process.env.REACT_APP_API_BASE}/signup`, {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

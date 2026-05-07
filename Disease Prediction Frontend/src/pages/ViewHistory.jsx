@@ -11,7 +11,7 @@ function ViewUsersHistory() {
 
   const fetchLogs = async () => {
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_BASE}/user-activity`);
+      const res = await fetch(`${import.meta.env.VITE_API_BASE}/user-activity`);
 
       if (!res.ok) throw new Error("Failed to fetch logs");
 

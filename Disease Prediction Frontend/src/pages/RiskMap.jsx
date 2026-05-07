@@ -42,7 +42,7 @@ function RiskMap({ selectedCity, setSelectedCity }) {
     const fetchData = async () => {
       try {
 
-        const res = await fetch(`${process.env.REACT_APP_API_BASE}/risk-map-data`);
+        const res = await fetch(`${import.meta.env.VITE_API_BASE}/risk-map-data`);
         const data = await res.json();
 
         if (res.ok) {
