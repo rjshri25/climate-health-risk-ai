@@ -44,7 +44,7 @@ function Predictions() {
   const handleDelete = async (id) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/history/delete/${id}`,
+        `${import.meta.env.VITE_API_BASE}/history/delete/${id}`,
         { method: "DELETE" }
       );
 
