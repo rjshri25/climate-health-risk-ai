@@ -8,7 +8,7 @@ export default function Alerts({ selectedCity, setSelectedCity }) {
 
   
   useEffect(() => {
-     fetch(`${process.env.REACT_APP_API_BASE}/live-weather`)
+      fetch(`${import.meta.env.VITE_API_BASE}/live-weather`)
       .then(res => res.json())
       .then(data => setAlertsData(data));
   }, []);
