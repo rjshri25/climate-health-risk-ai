@@ -1,11 +1,12 @@
 from os import path
-
 from flask import Flask, request, jsonify, render_template
 import requests
 from pipeline import full_pipeline
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 
 
 app = Flask(__name__)
@@ -121,9 +122,14 @@ class ActivityLog(db.Model):
     details = db.Column(db.String(255))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
-WEATHER_API_KEY = "abf62d5af5cd45d9b1794158261104"
+ 
+load_dotenv()
 
+WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 
+@app.route("/")
+def home():
+    return "Backend Running Successfully"
 
 @app.route("/signup", methods=["POST"])
 def signup():
